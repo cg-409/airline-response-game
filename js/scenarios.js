@@ -111,9 +111,9 @@ export const scenarios = [
         question: "🟥 IT security has discovered a backdoor planted on your airline's web portal. What’s your next step?",
         complexity: 'hard',
         options: [
-            { text: "🚨 Shut down the affected web servers immediately", points: 50, nextScenario: 19 },
-            { text: "🕵️ Attempt to trace the attacker's IP before taking action", points: 30, timePenalty: 120, nextScenario: 20 },
-            { text: "🔄 Restart the web servers and monitor closely", points: -30, timePenalty: 90, nextScenario: 21 }
+            { text: "🚨 Shut down the affected web servers immediately", points: 50, nextScenario: 15 },
+            { text: "🕵️ Attempt to trace the attacker's IP before taking action", points: 30, timePenalty: 120, nextScenario: 12 },
+            { text: "🔄 Restart the web servers and monitor closely", points: -30, timePenalty: 90, nextScenario: 8 }
         ]
     },
 
@@ -123,28 +123,29 @@ export const scenarios = [
         question: "🟨 Due to delayed action, your airline’s reservation system is now sluggish. What should you do?",
         complexity: 'medium',
         options: [
-            { text: "🔄 Perform a system reboot during non-peak hours", points: 30, nextScenario: 22 },
+            { text: "🔄 Perform a system reboot during non-peak hours", points: 30, nextScenario: 15 },
             { text: "⚙️ Increase server capacity temporarily", points: 20, nextScenario: 23 },
-            { text: "❌ Continue operations as usual and hope performance improves", points: -20, timePenalty: 90, nextScenario: 24 }
+            { text: "❌ Continue operations as usual and hope performance improves", points: -20, timePenalty: 90, nextScenario: 8 }
         ]
     },
     
-    // ENDINGS
-    {
-        id: 13,
-        question: "🎯 You successfully handled the incident with transparency. The airline gains public trust. Game Over!",
-        options: [
-            { text: "🔄 Restart", points: 0, nextScenario: 1 }
-        ]
-    },
+// 🎯 SUCCESSFUL ENDING
+{
+    id: 13,
+    question: "🎯 SUCCESS! You managed the incident effectively, securing customer trust and airline operations.",
+    options: [
+        { text: "➡️ View Leaderboard", points: 0, nextScenario: null }
+    ]
+},
     
-    {
-        id: 14,
-        question: "❌ Your silent fix was discovered, causing public outrage. The airline lost millions. Game Over.",
-        options: [
-            { text: "🔄 Restart", points: 0, nextScenario: 1 }
-        ]
-    },
+// ❌ FAILURE ENDINGS
+{
+    id: 14,
+    question: "❌ FAILURE! A lack of swift communication caused public outrage. The airline suffered severe losses.",
+    options: [
+        { text: "➡️ View Leaderboard", points: 0, nextScenario: null }
+    ]
+},
     
     {
         id: 15,
@@ -154,20 +155,20 @@ export const scenarios = [
         ]
     },
     
+// FINAL SUCCESSFUL OUTCOME
     {
         id: 16,
-        question: "🎯 You refused to pay ransom, but improved security avoided further damage. Game Over!",
+        question: "🎯 SUCCESS! Your strong security measures prevented major data loss, protecting the airline's reputation.",
         options: [
-            { text: "🔄 Restart", points: 0, nextScenario: 1 }
+            { text: "➡️ View Leaderboard", points: 0, nextScenario: null }
         ]
-    },
+},
     
     {
         id: 17,
-        question: "❌ The hacker took the ransom and leaked the data anyway. Game Over.",
+        question: "❌ FAILURE! The ransom was paid, but the hacker leaked the data anyway. A costly mistake.",
         options: [
-            { text: "🔄 Restart", points: 0, nextScenario: 1 }
+            { text: "➡️ View Leaderboard", points: 0, nextScenario: null }
         ]
-    }
 ];
 
