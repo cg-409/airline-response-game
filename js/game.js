@@ -3,18 +3,16 @@ import { scenarios } from './scenarios.js';
 
 let score = 0;
 let currentScenarioIndex = 0;
+let remainingTime = 30 * 60; // 30-minute countdown timer
+
+// Shuffle scenarios at the start for replay value
+function shuffleScenarios(scenarios) {
+    return scenarios.sort(() => Math.random() - 0.5);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById('startGameBtn');
-
-    if (!startButton) {
-        console.error('❌ Start Game button not found in DOM!');
-        return;
-    }
-
     startButton.addEventListener('click', () => {
-        console.log('✅ Start Game button clicked!');
-
         const playerName = document.getElementById('playerName').value.trim();
         if (!playerName) {
             alert('Please enter your name to start the game.');
@@ -26,22 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
         gameArea.style.display = 'block';
 
         const timerDisplay = document.getElementById('timer');
-        startTimer(30 * 60, timerDisplay, endGame);
+        startTimer(remainingTime, timerDisplay, endGame);
 
-        displayScenario(scenarios[0]);
+        const randomizedScenarios = shuffleScenarios([...scenarios]);
+        displayScenario(randomizedScenarios[0]);
     });
 });
 
 function displayScenario(scenario) {
     const gameArea = document.getElementById('gameArea');
     gameArea.innerHTML = '';
-
-    if (scenario.image) {
-        const background = document.createElement('img');
-        background.src = scenario.image;
-        background.classList.add('scenario-image');
-        gameArea.appendChild(background);
-    }
 
     const scenarioText = document.createElement('p');
     scenarioText.textContent = scenario.question;
@@ -52,13 +44,19 @@ function displayScenario(scenario) {
         button.textContent = option.text;
         button.classList.add('option-button');
 
-        button.addEventListener('click', () => handleAnswer(option));
+        button.addEventListener('click', () => handleAnswer(option, scenario.bonus));
         gameArea.appendChild(button);
     });
 }
 
-function handleAnswer(option) {
-    score += option.points;
+function handleAnswer(option, isBonusRound = false) {
+    score += option.points || 0;
+
+    // Apply time penalties if applicable
+    if (option.timePenalty) {
+        remainingTime -= option.timePenalty;
+        alert(`⏳ Time Penalty: -${option.timePenalty / 60} minutes`);
+    }
 
     if (option.nextScenario !== null) {
         const nextScenario = scenarios.find(s => s.id === option.nextScenario);
@@ -73,7 +71,7 @@ function handleAnswer(option) {
 }
 
 function endGame() {
-    alert(`🎉 Game Over! Final Score: ${score} points`);
+    alert(`🎯 Game Over! Final Score: ${score} points`);
 
     const leaderboard = document.getElementById('leaderboard');
     leaderboard.style.display = 'block';
