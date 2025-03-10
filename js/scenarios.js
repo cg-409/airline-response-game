@@ -127,8 +127,8 @@ export const scenarios = [
         { text: "⚙️ Increase server capacity temporarily", points: 20, nextScenario: 23 },
         { text: "❌ Continue operations as usual and hope performance improves", points: -20, timePenalty: 90, nextScenario: 24 }
     ]
-}
-
+},
+    
     // ENDINGS
     {
         id: 13,
