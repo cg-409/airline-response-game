@@ -80,6 +80,54 @@ export const scenarios = [
             { text: "❌ Ignore the attack since systems seem stable", points: -50 }
         ]
     },
+    
+// 🟨 MEDIUM SCENARIO — Scenario ID 9
+{
+    id: 9,
+    question: "🟨 The phishing email was traced to a compromised employee account. What’s your next move?",
+    complexity: 'medium',
+    options: [
+        { text: "🔒 Reset the compromised employee's password immediately", points: 30, nextScenario: 13 },
+        { text: "💻 Investigate further before taking action", points: 20, nextScenario: 14 },
+        { text: "❌ Ignore it since no data breach has been reported", points: -15, timePenalty: 60, nextScenario: 15 }
+    ]
+},
+
+// 🟩 EASY SCENARIO — Scenario ID 10
+{
+    id: 10,
+    question: "🟩 Staff are asking how to identify phishing emails. What advice should you provide?",
+    complexity: 'easy',
+    options: [
+        { text: "🔍 Look for suspicious links, spelling errors, and unknown senders", points: 20, nextScenario: 16 },
+        { text: "📣 Advise staff to ignore all external emails", points: -10, nextScenario: 17 },
+        { text: "❌ Tell staff to only report phishing if they clicked the link", points: -15, nextScenario: 18 }
+    ]
+},
+
+// 🟥 HARD SCENARIO — Scenario ID 11
+{
+    id: 11,
+    question: "🟥 IT security has discovered a backdoor planted on your airline's web portal. What’s your next step?",
+    complexity: 'hard',
+    options: [
+        { text: "🚨 Shut down the affected web servers immediately", points: 50, nextScenario: 19 },
+        { text: "🕵️ Attempt to trace the attacker's IP before taking action", points: 30, timePenalty: 120, nextScenario: 20 },
+        { text: "🔄 Restart the web servers and monitor closely", points: -30, timePenalty: 90, nextScenario: 21 }
+    ]
+},
+
+// 🟨 MEDIUM SCENARIO — Scenario ID 12
+{
+    id: 12,
+    question: "🟨 Due to delayed action, your airline’s reservation system is now sluggish. What should you do?",
+    complexity: 'medium',
+    options: [
+        { text: "🔄 Perform a system reboot during non-peak hours", points: 30, nextScenario: 22 },
+        { text: "⚙️ Increase server capacity temporarily", points: 20, nextScenario: 23 },
+        { text: "❌ Continue operations as usual and hope performance improves", points: -20, timePenalty: 90, nextScenario: 24 }
+    ]
+}
 
     // ENDINGS
     {
