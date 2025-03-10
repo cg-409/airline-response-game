@@ -5,10 +5,14 @@ let score = 0;
 let currentScenarioIndex = 0;
 let remainingTime = 30 * 60; // 30-minute countdown timer
 
-// Shuffle scenarios at the start for replay value
+// Shuffle scenarios for replayability
 function shuffleScenarios(scenarios) {
     return scenarios.sort(() => Math.random() - 0.5);
 }
+
+// Track progress through scenarios
+let totalScenarios = 20;
+let completedScenarios = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById('startGameBtn');
@@ -47,6 +51,10 @@ function displayScenario(scenario) {
         button.addEventListener('click', () => handleAnswer(option, scenario.bonus));
         gameArea.appendChild(button);
     });
+
+    // Progress Tracking
+    completedScenarios++;
+    updateProgressBar(completedScenarios, totalScenarios);
 }
 
 function handleAnswer(option, isBonusRound = false) {
@@ -70,6 +78,13 @@ function handleAnswer(option, isBonusRound = false) {
     }
 }
 
+function updateProgressBar(completed, total) {
+    const progressBar = document.getElementById('progress-bar');
+    const progressPercentage = Math.floor((completed / total) * 100);
+    progressBar.style.width = `${progressPercentage}%`;
+    progressBar.textContent = `${progressPercentage}%`;
+}
+
 function endGame() {
     alert(`🎯 Game Over! Final Score: ${score} points`);
 
@@ -82,4 +97,7 @@ function endGame() {
     const newScore = document.createElement('li');
     newScore.textContent = `${playerName} - ${score} points`;
     leaderboardList.appendChild(newScore);
+
+    // Show full progress bar when finished
+    updateProgressBar(totalScenarios, totalScenarios);
 }
