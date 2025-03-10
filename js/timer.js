@@ -7,7 +7,7 @@ export function startTimer(duration, display, onEnd) {
 
         if (--timer < 0) {
             clearInterval(interval);
-            onEnd();  // Callback when timer reaches zero
+            onEnd();  // Corrected function callback
         }
     }, 1000);
 }
