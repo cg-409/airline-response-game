@@ -4,21 +4,32 @@ import { scenarios } from './scenarios.js';
 let score = 0;
 let currentScenarioIndex = 0;
 
-document.getElementById('startGameBtn').addEventListener('click', () => {
-    console.log('Start Game button clicked!');
-    const playerName = document.getElementById('playerName').value.trim();
-    if (!playerName) {
-        alert('Please enter your name to start the game.');
+document.addEventListener("DOMContentLoaded", () => {
+    const startButton = document.getElementById('startGameBtn');
+
+    if (!startButton) {
+        console.error('❌ Start Game button not found in DOM!');
         return;
     }
 
-    document.getElementById('player-input').style.display = 'none';
-    document.getElementById('gameArea').style.display = 'block';
+    startButton.addEventListener('click', () => {
+        console.log('✅ Start Game button clicked!');
 
-    const timerDisplay = document.getElementById('timer');
-    startTimer(30 * 60, timerDisplay, endGame);
+        const playerName = document.getElementById('playerName').value.trim();
+        if (!playerName) {
+            alert('Please enter your name to start the game.');
+            return;
+        }
 
-    displayScenario(scenarios[0]);
+        document.getElementById('player-input').style.display = 'none';
+        const gameArea = document.getElementById('gameArea');
+        gameArea.style.display = 'block';
+
+        const timerDisplay = document.getElementById('timer');
+        startTimer(30 * 60, timerDisplay, endGame);
+
+        displayScenario(scenarios[0]);
+    });
 });
 
 function displayScenario(scenario) {
@@ -30,11 +41,6 @@ function displayScenario(scenario) {
         background.src = scenario.image;
         background.classList.add('scenario-image');
         gameArea.appendChild(background);
-    }
-
-    if (scenario.sound) {
-        const audio = new Audio(scenario.sound);
-        audio.play();
     }
 
     const scenarioText = document.createElement('p');
@@ -58,6 +64,8 @@ function handleAnswer(option) {
         const nextScenario = scenarios.find(s => s.id === option.nextScenario);
         if (nextScenario) {
             displayScenario(nextScenario);
+        } else {
+            console.error(`❌ Scenario ID ${option.nextScenario} not found!`);
         }
     } else {
         endGame();
