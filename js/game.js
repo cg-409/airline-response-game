@@ -3,7 +3,7 @@ import { scenarios } from './scenarios.js';
 
 let score = 0;
 let currentScenarioIndex = 0;
-let remainingTime = 30 * 60; // 30-minute countdown timer
+let remainingTime = 20 * 60; // 20-minute countdown timer
 
 // Shuffle scenarios for replayability
 function shuffleScenarios(scenarios) {
@@ -74,6 +74,7 @@ function handleAnswer(option, isBonusRound = false) {
             console.error(`❌ Scenario ID ${option.nextScenario} not found!`);
         }
     } else {
+        // Reaching an ending = show leaderboard
         endGame();
     }
 }
@@ -98,6 +99,6 @@ function endGame() {
     newScore.textContent = `${playerName} - ${score} points`;
     leaderboardList.appendChild(newScore);
 
-    // Show full progress bar when finished
+    // Ensure full progress bar on completion
     updateProgressBar(totalScenarios, totalScenarios);
 }
