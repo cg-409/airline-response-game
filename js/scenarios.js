@@ -1,52 +1,111 @@
 export const scenarios = [
+    // 🟩 EASY SCENARIOS
     {
         id: 1,
-        question: "🚨 The airline's flight reservation system is under a DDoS attack. What should you do first?",
-        image: "assets/background.jpg",
-        sound: "assets/alert.mp3",
+        question: "🟩 A flight attendant reports a suspicious USB drive left in the cockpit. What should you do?",
+        complexity: 'easy',
         options: [
-            { text: "🛑 Inform the public immediately", nextScenario: 2, points: 10 },
-            { text: "🛡️ Isolate affected servers & activate mitigation", nextScenario: 3, points: 30 },
-            { text: "🔌 Shut down the entire system", nextScenario: 4, points: 5 }
+            { text: "🚫 Destroy the USB drive", points: 10, nextScenario: 2 },
+            { text: "🖥️ Connect the USB drive to your laptop", points: -10, timePenalty: 60, nextScenario: 3 },
+            { text: "📞 Report the incident to IT security", points: 30, nextScenario: 4 }
         ]
     },
     {
         id: 2,
-        question: "📢 The public panics after your announcement. What now?",
+        question: "🟩 The USB drive contained malware. What now?",
+        complexity: 'easy',
         options: [
-            { text: "🚧 Assure them IT is fixing it", nextScenario: 3, points: 20 },
-            { text: "❌ Ignore further communication", nextScenario: 5, points: 5 }
+            { text: "🚨 Isolate the infected system immediately", points: 30, nextScenario: 5 },
+            { text: "🤷 Ignore it, since no files were opened", points: -20, timePenalty: 90, nextScenario: 5 }
         ]
     },
     {
         id: 3,
-        question: "🔎 You successfully stopped the attack, but you suspect malware was planted. What next?",
+        question: "🟩 Your laptop is now infected with ransomware. What’s your next move?",
         options: [
-            { text: "📂 Run a full security audit", nextScenario: 6, points: 30 },
-            { text: "💾 Restore from the last backup", nextScenario: 5, points: 15 }
+            { text: "🛡️ Disconnect from the network immediately", points: 30, nextScenario: 6 },
+            { text: "🔄 Restart your laptop", points: -15, nextScenario: 6 }
         ]
     },
+
+    // 🟨 MEDIUM SCENARIOS
     {
         id: 4,
-        question: "⚠️ The shutdown caused all flights to be delayed. The airline lost revenue. What's next?",
+        question: "🟨 A phishing email has been reported to IT. What's your next step?",
+        complexity: 'medium',
         options: [
-            { text: "💡 Reboot the system and analyze logs", nextScenario: 6, points: 10 },
-            { text: "📞 Call management and explain the loss", nextScenario: 5, points: 5 }
+            { text: "📣 Alert staff to delete the email immediately", points: 30, nextScenario: 10 },
+            { text: "🔍 Analyze the phishing email's metadata", points: 20, nextScenario: 11 },
+            { text: "🗑️ Ignore it since no one clicked it", points: -15, timePenalty: 60, nextScenario: 12 }
         ]
     },
     {
         id: 5,
-        question: "🛑 You failed to respond correctly. Restart?",
+        question: "🟨 A phishing email has been reported to IT. What's your next step?",
         options: [
-            { text: "🔄 Restart game", nextScenario: 1, points: 0 }
+            { text: "📣 Alert staff to delete the email immediately", points: 30, nextScenario: 10 },
+            { text: "🔍 Analyze the phishing email's metadata to track the source", points: 20, nextScenario: 11 },
+            { text: "🗑️ Ignore it since no one reported clicking on the email", points: -15, nextScenario: 12 }
+        ]
+    },
+
+    // 🟥 HARD SCENARIOS
+    {
+        id: 6,
+        question: "🟥 Your airline's data breach has leaked 100,000 customer records. What should you do?",
+        complexity: 'hard',
+        options: [
+            { text: "📞 Inform affected customers immediately", points: 50, nextScenario: 13 },
+            { text: "💻 Attempt to patch the vulnerability quietly", points: -30, timePenalty: 120, nextScenario: 14 },
+            { text: "🕵️ Contact law enforcement and share threat data", points: 40, nextScenario: 15 }
         ]
     },
     {
-        id: 6,
-        question: "🎉 You successfully managed the cyberattack! Final decision:",
+        id: 7,
+        question: "🟥 A hacker has demanded ransom to stop further leaks. What’s your best move?",
         options: [
-            { text: "📜 Submit a detailed incident report", nextScenario: null, points: 30 },
-            { text: "🔐 Improve firewall rules", nextScenario: null, points: 25 }
+            { text: "📞 Contact law enforcement immediately", points: 50, nextScenario: 16 },
+            { text: "💰 Pay the ransom and hope for the best", points: -40, nextScenario: 17 },
+            { text: "🛡️ Strengthen your firewall and refuse negotiations", points: 30, nextScenario: 18 }
         ]
+    },
+        // 🎯 BONUS ROUND (Quick Decision Test)
+    {
+        id: 8,
+        question: "🎯 BONUS ROUND! A hacker is rapidly attacking your network. What’s the best immediate response?",
+        bonus: true,
+        options: [
+            { text: "🛡️ Block all incoming traffic temporarily", points: 50 },
+            { text: "🔄 Restart key servers", points: -30 },
+            { text: "❌ Ignore the attack since systems seem stable", points: -50 }
+        ]
+    },
+
+    // ENDINGS
+    {
+        id: 13,
+        question: "🎯 You successfully handled the incident with transparency. The airline gains public trust. Game Over!",
+        options: [{ text: "🔄 Restart", points: 0, nextScenario: 1 }]
+    },
+    {
+        id: 14,
+        question: "❌ Your silent fix was discovered, causing public outrage. The airline lost millions. Game Over.",
+        options: [{ text: "🔄 Restart", points: 0, nextScenario: 1 }]
+    },
+    {
+        id: 15,
+        question: "🎯 Law enforcement intercepted the hacker. The airline's security improved. Game Over!",
+        options: [{ text: "🔄 Restart", points: 0, nextScenario: 1 }]
+    },
+    {
+        id: 16,
+        question: "🎯 You refused to pay ransom, but improved security avoided further damage. Game Over!",
+        options: [{ text: "🔄 Restart", points: 0, nextScenario: 1 }]
+    },
+    {
+        id: 17,
+        question: "❌ The hacker took the ransom and leaked the data anyway. Game Over.",
+        options: [{ text: "🔄 Restart", points: 0, nextScenario: 1 }]
     }
 ];
+
