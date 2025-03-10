@@ -129,23 +129,23 @@ export const scenarios = [
         ]
     },
     
-// 🎯 SUCCESSFUL ENDING
-{
-    id: 13,
-    question: "🎯 SUCCESS! You managed the incident effectively, securing customer trust and airline operations.",
-    options: [
-        { text: "➡️ View Leaderboard", points: 0, nextScenario: null }
-    ]
-},
+    // 🎯 SUCCESSFUL ENDING
+    {
+        id: 13,
+        question: "🎯 SUCCESS! You managed the incident effectively, securing customer trust and airline operations.",
+        options: [
+            { text: "➡️ View Leaderboard", points: 0, nextScenario: null }
+        ]
+    },
     
-// ❌ FAILURE ENDINGS
-{
-    id: 14,
-    question: "❌ FAILURE! A lack of swift communication caused public outrage. The airline suffered severe losses.",
-    options: [
-        { text: "➡️ View Leaderboard", points: 0, nextScenario: null }
-    ]
-},
+    // ❌ FAILURE ENDINGS
+    {
+        id: 14,
+        question: "❌ FAILURE! A lack of swift communication caused public outrage. The airline suffered severe losses.",
+        options: [
+            { text: "➡️ View Leaderboard", points: 0, nextScenario: null }
+        ]
+    },
     
     {
         id: 15,
@@ -155,14 +155,14 @@ export const scenarios = [
         ]
     },
     
-// FINAL SUCCESSFUL OUTCOME
+    // FINAL SUCCESSFUL OUTCOME
     {
         id: 16,
         question: "🎯 SUCCESS! Your strong security measures prevented major data loss, protecting the airline's reputation.",
         options: [
             { text: "➡️ View Leaderboard", points: 0, nextScenario: null }
         ]
-},
+    },
 
     {
         id: 17,
