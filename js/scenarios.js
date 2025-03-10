@@ -163,7 +163,7 @@ export const scenarios = [
             { text: "➡️ View Leaderboard", points: 0, nextScenario: null }
         ]
 },
-    
+
     {
         id: 17,
         question: "❌ FAILURE! The ransom was paid, but the hacker leaked the data anyway. A costly mistake.",
