@@ -170,5 +170,3 @@ export const scenarios = [
         options: [
             { text: "➡️ View Leaderboard", points: 0, nextScenario: null }
         ]
-];
-
