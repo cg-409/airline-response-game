@@ -12,6 +12,25 @@ body {
     padding: 20px;
 }
 
+#progress-container {
+    width: 100%;
+    background-color: #333;
+    height: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #4CAF50;
+    text-align: center;
+    color: #fff;
+    line-height: 20px;
+    transition: width 0.4s ease-in-out;
+}
+
 #gameArea {
     position: relative;
     width: 100%;
