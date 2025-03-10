@@ -5,6 +5,7 @@ let score = 0;
 let currentScenarioIndex = 0;
 
 document.getElementById('startGameBtn').addEventListener('click', () => {
+    console.log('Start Game button clicked!');
     const playerName = document.getElementById('playerName').value.trim();
     if (!playerName) {
         alert('Please enter your name to start the game.');
